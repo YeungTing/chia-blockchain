@@ -167,6 +167,19 @@ class Wallet:
         puzzle = puzzle_for_pk(dr.pubkey)
         return puzzle
 
+    async def get_puzzle(self, new: bool) -> bytes32:
+        if new:
+            return await self.get_new_puzzle()
+        else:
+            record: Optional[
+                DerivationRecord
+            ] = await self.wallet_state_manager.get_current_derivation_record_for_wallet(self.id())
+            if record is None:
+                return await self.get_new_puzzle()
+
+            puzzle = puzzle_for_pk(record.pubkey)
+            return puzzle
+
     async def get_puzzle_hash(self, new: bool) -> bytes32:
         if new:
             return await self.get_new_puzzlehash()
