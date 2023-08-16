@@ -167,7 +167,7 @@ class Wallet:
         puzzle = puzzle_for_pk(dr.pubkey)
         return puzzle
 
-    async def get_puzzle(self, new: bool) -> bytes32:
+    async def get_puzzle(self, new: bool) -> Program:
         if new:
             return await self.get_new_puzzle()
         else:
