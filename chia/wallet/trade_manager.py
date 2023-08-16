@@ -493,7 +493,8 @@ class TradeManager:
             )
 
             potential_special_offer: Optional[Offer] = await self.check_for_special_offer_making(
-                offer_dict_no_ints, driver_dict, solver, fee, min_coin_amount, max_coin_amount, reuse_puzhash=reuse_puzhash
+                offer_dict_no_ints, driver_dict, solver, fee, min_coin_amount, max_coin_amount, 
+                reuse_puzhash=reuse_puzhash
             )
 
             if potential_special_offer is not None:
@@ -807,7 +808,8 @@ class TradeManager:
                 == AssetType.ROYALTY_TRANSFER_PROGRAM.value
             ):
                 return await NFTWallet.make_nft1_offer(
-                    self.wallet_state_manager, offer_dict, driver_dict, fee, min_coin_amount, max_coin_amount, reuse_puzhash=reuse_puzhash
+                    self.wallet_state_manager, offer_dict, driver_dict, fee, min_coin_amount, max_coin_amount, 
+                    reuse_puzhash=reuse_puzhash
                 )
             elif (
                 puzzle_info.check_type(
